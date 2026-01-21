@@ -31,3 +31,28 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# ===== Build output =====
+target/
+build/
+out/
+
+# ===== IDEs =====
+.idea/
+*.iml
+.vscode/
+
+# ===== OS =====
+.DS_Store
+
+# ===== Logs =====
+*.log
+
+# ===== Env / secrets =====
+.env
+application-local.properties
+application-local.yml
+
+# ===== Spring Boot =====
+*.jar
+
