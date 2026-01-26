@@ -6,6 +6,7 @@ import com.eldarmeta.internship.dto.UserRegistrationDto;
 import com.eldarmeta.internship.exception.UsernameAlreadyExistsException;
 import com.eldarmeta.internship.model.User;
 import com.eldarmeta.internship.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,7 +25,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponseDto> register(@RequestBody UserRegistrationDto dto) {
+    public ResponseEntity<AuthResponseDto> register(@Valid @RequestBody UserRegistrationDto dto) {
         try {
             userService.registerUser(dto);
             return ResponseEntity.status(HttpStatus.CREATED)
@@ -36,7 +37,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponseDto> login(@RequestBody LoginRequestDto dto) {
+    public ResponseEntity<AuthResponseDto> login(@Valid @RequestBody LoginRequestDto dto) { // <-- @Valid ДОБАВИЛИ
         User user = userService.findByUsername(dto.getUsername()).orElse(null);
 
         if (user == null) {
